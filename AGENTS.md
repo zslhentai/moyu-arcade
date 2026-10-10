@@ -1,0 +1,11 @@
+# Moyu Arcade 开发约定
+- 技术栈 React / TypeScript / Vite / Tailwind CSS，中文为默认界面语言。
+- 游戏纯逻辑放在 src/games/<id>/engine.ts；React 组件负责展示、输入与生命周期。
+- 新游戏注册在 src/games/catalog.ts，复用 GamePage；未来太空弹珠可懒加载独立模块。
+- 存储使用 src/lib/storage.ts：版本化键名、校验读取、捕获失败。不得依赖账号或服务器。
+- 保持背景 #0B1020、卡片 #1A2238 与三种强调色；触控目标至少 44px，支持减少动画设置。
+- 键盘事件仅在游戏页生效，输入控件保留原行为；卸载清理监听器/定时器。
+- 使用原创 CSS/SVG 图形，不引入未获许可商业素材。
+- 每阶段合理提交，提交前 npm test 与 npm run build；涉及布局需检查 390px、1280px、1440px。
+- HashRouter 兼容 Pages 刷新；资源路径由 Vite base 生成，禁止硬编码部署仓库路径。
+- 不夸大验证与部署状态；未执行浏览器验收必须明确记录。
