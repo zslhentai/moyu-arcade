@@ -1,0 +1,5 @@
+import type {Direction} from '../games/2048/engine';
+export function Controls({onMove}:{onMove:(d:Direction)=>void}) {return <div className="direction-pad" aria-label="方向控制">{(['up','left','down','right'] as Direction[]).map(d=><button key={d} className={`btn direction-${d}`} aria-label={{up:'向上',down:'向下',left:'向左',right:'向右'}[d]} onClick={()=>onMove(d)}>{{up:'↑',down:'↓',left:'←',right:'→'}[d]}</button>)}</div>}
+export function keyDirection(key:string):Direction|undefined {return ({ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',w:'up',s:'down',a:'left',d:'right'} as Record<string,Direction>)[key];}
+export function swipeDirection(dx:number,dy:number):Direction|undefined {if(Math.max(Math.abs(dx),Math.abs(dy))<20)return;return Math.abs(dx)>Math.abs(dy)?dx>0?'right':'left':dy>0?'down':'up';}
+export function editing(target:EventTarget|null) {return target instanceof HTMLElement && (['INPUT','SELECT','TEXTAREA','BUTTON'].includes(target.tagName)||target.isContentEditable);}
